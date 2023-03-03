@@ -9,9 +9,12 @@ const spreadMixin = css`
   align-items: center;
 `
 
-/**
- * Header Custom
- */
+const centerMixin = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const HeaderWrap = styled.header`
   height: ${pxToRem(50)};
   left: 0;
@@ -22,15 +25,28 @@ export const HeaderWrap = styled.header`
 `
 
 export const HeaderNav = styled.nav`
-  ${spreadMixin}
-  background-color: ${colors.orange[10]};
+  ${props => props.hasId ? centerMixin : spreadMixin}
+  background-color: ${colors.orange[20]};
   height: 100%;
   padding: ${theme.spacing[1]};
   width: 100%;
 `
 
+export const HeaderButtonBack = styled.label`
+  color: ${colors.gray[70]};
+  left: ${pxToRem(20)};
+  position: absolute;
+
+  &:hover {
+    color: ${colors.gray[0]};
+    cursor: pointer;
+  }
+`
+
 export const HeaderImage = styled.img`
+  height: ${pxToRem(40)};
   max-height: 100%;  
   max-width: 100%;
   padding: ${theme.spacing[1]};
 `
+
