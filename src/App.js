@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
-import { fetchBands } from './services/bandsSlice';
+import { fetchBands , fetchBandsAlbum } from './services/bandsSlice';
 import { Container } from './assets/styles/global';
 
 // Organism imports
@@ -15,21 +15,25 @@ function App() {
 
   const dispatch = useDispatch()
   const bands = useSelector((state) => state.bands.bands);
+  const albums = useSelector((state) => state.bands.album);  
+
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => { dispatch(fetchBands()) }, [dispatch]);
+  useEffect(() => { 
+    dispatch(fetchBands()) 
+    dispatch(fetchBandsAlbum()) 
+  }, [dispatch]);
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
   };
-
 
   return (
     <>
       <Navbar onSearchChange={handleSearchChange} />
       <Container>        
         <Routes>
-            <Route path="/" element={<Home bands={bands} searchQuery={searchQuery} />}/>
+            <Route path="/" element={<Home bands={bands} albums={albums} searchQuery={searchQuery} />}/>
             <Route path="/band/id/:id" element={<BandInfo bands={bands} />} />
         </Routes>
       </Container>
