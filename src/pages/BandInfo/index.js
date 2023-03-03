@@ -8,7 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function BandInfo() {
 
-  const [isAboutOpen , setAboutOpen] = useState(false)
+  const [ isAboutOpen , setAboutOpen] = useState(false)
   const [ discography , getDiscography ] = useState([])
   const dispatch = useDispatch()
   const params = useParams()
@@ -21,21 +21,24 @@ export default function BandInfo() {
     getDiscography(filteredAlbums)
   }, [albums, bandInfo.id])
 
+
   useEffect(() => { 
     dispatch(fetchBandsDetails(params.id)) 
     dispatch(fetchBandsAlbum()) 
   }, [dispatch, params.id]);
+
+  const imageCover = discography.length > 0 ? discography[0].image : bandInfo.image
       
   return (
     <>
-       <BandCover image={bandInfo.image}> 
+       <BandCover image={imageCover}> 
           <h2>{bandInfo.name}</h2>
        </BandCover>
        <BandSpecsWrapper>
           <BandSpecs>
               <p className='--1'>{bandInfo.genre}</p>
               <div className='ImageWrapper'>
-                <img src={bandInfo.image} alt='Band Avatar' />
+                <img src={imageCover} alt='Band Avatar' />
               </div> 
               <p className='--2'>{bandInfo.numPlays}</p>            
           </BandSpecs>

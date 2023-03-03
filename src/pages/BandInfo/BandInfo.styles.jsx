@@ -15,7 +15,7 @@ const ellipseMixin = css`
 
 export const BandCover = styled.div`
     align-items: center;
-    background: ${props => `linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(255 0 150 / 0%)) , url(${props.image}) no-repeat center center`};
+    background: ${props => `linear-gradient(0deg, rgb(0 0 0 / 80%), rgb(255 0 150 / 0%)) , url(${props.image}) no-repeat center center`};
     background-size: cover;
     display: flex;
     height: ${pxToRem(300)};
@@ -66,7 +66,7 @@ export const BandSpecs = styled.section`
 
         img {
             border-radius: 50%;
-            box-shadow: 1px 3px 5px 0px #0000002e;
+            box-shadow: 3px 5px 10px 0px #00000073;
             height: ${pxToRem(150)};
             margin-top: ${pxToRem(-85)};
             min-height: ${pxToRem(150)};
