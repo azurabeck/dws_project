@@ -27,14 +27,14 @@ export default function Home(props) {
 
     // Apply order by name if query is "name"
     if (query === 'name') {
-        filteredBands = filteredBands.sort((a, b) =>
+        filteredBands = filteredBands.slice().sort((a, b) =>
             a.name > b.name ? 1 : b.name > a.name ? -1 : 0
         );
     }
 
     // Apply order by rate if query is "rate"
     if (query === 'rate') {
-        filteredBands = filteredBands.sort((a, b) => b.numPlays - a.numPlays);
+        filteredBands = filteredBands.slice().sort((a, b) => b.numPlays - a.numPlays);
     }
 
     return (
